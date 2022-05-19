@@ -30,11 +30,36 @@ async function run() {
 
         //<------------ Database All API ------------->
 
-        // Get Events From DB
+        // Get All Events From DB
+
         app.get('/events', async (req, res) => {
             const allEvent = await events.find({}).toArray();
             res.send(allEvent)
         })
+
+        // Get All Programmes From DB
+
+        app.get('/programmes', async (req, res) => {
+            const allPrograms = await programme.find({}).toArray();
+            res.send(allPrograms)
+        })
+
+        // Get All Testimonial From DB
+
+        app.get('/testimonials', async (req, res) => {
+            const allTestimonial = await testimonial.find({}).toArray();
+            res.send(allTestimonial)
+        })
+
+        // Get All Tutors From DB
+
+        app.get('/tutors', async (req, res) => {
+            const allTutors = await tutors.find({}).toArray();
+            res.send(allTutors)
+        })
+
+
+
 
     } finally {
         // await client.close();
