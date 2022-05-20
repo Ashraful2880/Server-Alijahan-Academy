@@ -28,6 +28,7 @@ async function run() {
         const testimonial = database.collection("Testimonial-Collections");
         const tutors = database.collection("Tutors-Collection");
         const students = database.collection("Students-Collection");
+        const users = database.collection("Users-Collection");
 
         //<------------ Database All API ------------->
 
@@ -65,6 +66,25 @@ async function run() {
             const allStudents = await students.find({}).toArray();
             res.send(allStudents)
         })
+
+
+        //<--------------- Save register User info to Database----------------->
+
+        app.post('/users', async (req, res) => {
+            const newUsers = req.body;
+            const result = await users.insertOne(newUsers);
+            res.json(result);
+        });
+        //<--------------- Update Google Sign User info to Database----------------->
+
+        app.put('/users', async (req, res) => {
+            const newUser = req.body;
+            const filter = { email: newUser.email }
+            const options = { upsert: true };
+            const updateUser = { $set: newUser }
+            const result = await users.updateOne(filter, updateUser, options);
+            res.json(result);
+        });
 
 
 
