@@ -85,9 +85,28 @@ async function run() {
             const result = await users.updateOne(filter, updateUser, options);
             res.json(result);
         });
+        //<--------------- Update Admin Role to Database----------------->
 
+        app.put('/users/admin', async (req, res) => {
+            const user = req.body;
+            const filter = { email: user.email }
+            const updateAdmin = { $set: { role: 'admin' } }
+            const result = await users.updateOne(filter, updateAdmin);
+            res.json(result);
+        });
 
+        //<------------ Get Admin Data From Database ------------->
 
+        app.get('/user/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = { email: email };
+            const getAdmin = await users.findOne(query);
+            let isAdmin = false
+            if (getAdmin?.role === 'admin') {
+                isAdmin = true;
+            }
+            res.json({ admin: isAdmin })
+        });
 
     } finally {
         // await client.close();
