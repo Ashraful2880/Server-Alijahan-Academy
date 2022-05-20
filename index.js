@@ -27,6 +27,7 @@ async function run() {
         const programme = database.collection("Programme-Collection");
         const testimonial = database.collection("Testimonial-Collections");
         const tutors = database.collection("Tutors-Collection");
+        const students = database.collection("Students-Collection");
 
         //<------------ Database All API ------------->
 
@@ -56,6 +57,13 @@ async function run() {
         app.get('/tutors', async (req, res) => {
             const allTutors = await tutors.find({}).toArray();
             res.send(allTutors)
+        })
+
+        // Get All Students From DB
+
+        app.get('/students', async (req, res) => {
+            const allStudents = await students.find({}).toArray();
+            res.send(allStudents)
         })
 
 
