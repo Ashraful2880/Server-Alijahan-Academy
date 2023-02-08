@@ -1,7 +1,6 @@
 # Server-Ali jahan Academy
 
 ## Client Side Code Link: https://github.com/Ashraful2880/Client-AliJahan-Academy
-### Live Website Link: https://ali-jahan-academy.herokuapp.com/
 
 ### Back-End Technology:
 
